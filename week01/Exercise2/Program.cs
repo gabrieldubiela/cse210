@@ -4,11 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("What is your grade percentage? ");
+        Console.Write("What is your grade percentage? ");
         int gradePercentage = int.Parse(Console.ReadLine());
 
         string letterGrade;
         string aditionalGrade;
+        string message = "";
 
         int remainder = gradePercentage % 10;
 
@@ -47,15 +48,17 @@ class Program
             letterGrade = "F";
             aditionalGrade = "";
         }
-        Console.WriteLine($"Your letter grade is {letterGrade}{aditionalGrade}.");
-
+        
         if (gradePercentage >= 70)
         {
-            Console.Write("Congratulations, you passed!");
+            message = "Congratulations, you passed!";
         }
         else
         {
-            Console.Write("Unfortunately, you did not pass, but don't give up. You will get next time!");
+            message = "Unfortunately, you did not pass, but don't give up. You will get next time!";
         }
+        
+        Console.WriteLine($"");
+        Console.Write($"Your letter grade is {letterGrade}{aditionalGrade}. {message}");
     }
 }
