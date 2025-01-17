@@ -22,11 +22,12 @@ class Program
 
             if (userChoice == 1)
             {
-                Console.Write(_prompt.GetRandomPrompt());
+                string _generatePrompt = _prompt.GetRandomPrompt();
+                Console.Write(_generatePrompt);
                 string _newEntrie = Console.ReadLine();
                 DateTime _theCurrentTime = DateTime.Now;
                 string _date = _theCurrentTime.ToShortDateString();
-                _entries.SaveEntrie(_newEntrie, _date);
+                _entries.SaveEntrie(_newEntrie, _date, _generatePrompt);
                 Console.WriteLine("");
             }
             else if (userChoice == 2)
@@ -52,15 +53,15 @@ class Program
             }
             else if (userChoice == 4)
             {
-            Console.Write("Enter the filename to load the journal: ");
-            string _openFilename = Console.ReadLine();
-                    string[] _lines = System.IO.File.ReadAllLines(_openFilename);
-                    foreach (string _line in _lines)
+                Console.Write("Enter the filename to load the journal: ");
+                string _openFilename = Console.ReadLine();
+                string[] _lines = System.IO.File.ReadAllLines(_openFilename);
+                foreach (string _line in _lines)
                     {
                         _entries._all.Add(_line); 
                     }
-                    Console.WriteLine("Journal loaded from " + _openFilename);
-                }
+                Console.WriteLine("Journal loaded from " + _openFilename);
+            }
             else
             {
                 Console.WriteLine("Invalid choice. Please choose a number between 1 and 5.");
