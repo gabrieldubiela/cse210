@@ -29,7 +29,7 @@ class Program
                 string _newEntrie = Console.ReadLine();
                 DateTime currentTime = DateTime.Now;
                 string _date = currentTime.ToShortDateString();
-                Console.WriteLine("What is you mood of the day?");
+                Console.Write("What is you mood of the day? ");
                 string _mood = Console.ReadLine();
                 entries.SaveEntrie(_newEntrie, _date, _generatePrompt, _mood);
                 Console.WriteLine("");
