@@ -1,3 +1,5 @@
+// Save other information (mood of the day) in the journal entry.
+
 using System;
 using System.IO; 
 
@@ -27,7 +29,9 @@ class Program
                 string _newEntrie = Console.ReadLine();
                 DateTime currentTime = DateTime.Now;
                 string _date = currentTime.ToShortDateString();
-                entries.SaveEntrie(_newEntrie, _date, _generatePrompt);
+                Console.WriteLine("What is you mood of the day?");
+                string _mood = Console.ReadLine();
+                entries.SaveEntrie(_newEntrie, _date, _generatePrompt, _mood);
                 Console.WriteLine("");
             }
             
@@ -44,6 +48,7 @@ class Program
                 Console.Write("Enter the filename to load the journal: ");
                 string _openFilename = Console.ReadLine();
                 string[] _lines = System.IO.File.ReadAllLines(_openFilename);
+                entries._all.Clear();
                 foreach (string _line in _lines)
                     {
                         entries._all.Add(_line); 
