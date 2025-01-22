@@ -19,7 +19,13 @@ class Program
         Fraction f4 = new Fraction(1, 3);
         Console.WriteLine(f4.GetFractionString());
         Console.WriteLine(f4.GetDecimalValue());
-    }
 
-    
+        Console.WriteLine(f4.GetTop());
+        f4.SetTop(9);
+        Console.WriteLine(f4.GetTop());
+
+        Console.WriteLine(f4.GetBottom());
+        f4.SetBottom(9);
+        Console.WriteLine(f4.GetBottom());
+    }
 }
