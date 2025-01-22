@@ -1,6 +1,6 @@
 using System;
 
-public class Fraction (int 1, int 1)
+public class Fraction ()
 {
   private int _top = 1;
   private int _bottom = 1;
@@ -32,4 +32,25 @@ public class Fraction (int 1, int 1)
     {
       return (double)_top / (double)_bottom;
     }
+
+  public int GetTop()
+  {
+    return _top;
+  }
+
+  public void int SetTop(top)
+  {
+    _top = top
+  }
+
+  public int GetBottom()
+  {
+    return _bottom;
+  }
+
+  public void int SetBottom(bottom)
+  {
+    _bottom = bottom
+  }
+  
 }
