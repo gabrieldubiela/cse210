@@ -1,12 +1,31 @@
-public class Word (string text)
+public class Word
+{
+    private string _text;
+    private bool _isHidden;
 
-private string _text;
-private bool _isHidden;
+    public Word(string text)
+    {
+        _text = text;
+        _isHidden = false;
+    }
+    
+    public void Hide()
+    {
+        _isHidden = true;
+    }
 
-    void Hide 
+    public void Show()
+    {
+        _isHidden = false;
+    }
 
-    void Show
+    public bool IsHidden()
+    {
+        return _isHidden;
+    }
 
-    bool IsHidden 
-
-    string GetDisplayText
+    public string GetDisplayText()
+    {
+        return _isHidden ? new string('_', _text.Length) : _text;
+    }
+}

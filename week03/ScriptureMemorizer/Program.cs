@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 
 class Program
 {
@@ -6,23 +7,33 @@ class Program
     {
         Console.WriteLine("Hello World! This is the ScriptureMemorizer Project.");
 
-
-        Library scripture = new Library();
-        Word text = new Word(scripture._text)
-        if scripture._endVerse = 0
-            Reference reference = new Reference(scripture._book, scripture._chapter, scripture._verse)
-        else
-            Reference reference = new Reference(scripture._book, scripture._chapter, scripture._verse, scripture._endVerse)
-        string _input;
-        Scripture scripture = new Scripture();
-
-        while (_input =! "quit")
+        Library library = new Library();
+        var scriptureData = library.RandomScripture();
+        Reference reference;
+        if (scriptureData.endVerse == 0)
         {
-            Console.WriteLine(reference + \n + scripture)
-            Console.Write('Press enter to continue or type "quit" to finish: ');
+            reference = new Reference(scriptureData.book, scriptureData.chapter, scriptureData.verse);
+        }
+        else
+        {
+            reference = new Reference(scriptureData.book, scriptureData.chapter, scriptureData.verse, scriptureData.endVerse);
+        }
+        Scripture scripture = new(reference, scriptureData.text);
+        string _input = "";
+
+        while (_input != "quit")
+        {
+            
+            Console.WriteLine(scripture.GetDisplayText());
+            Console.Write("\nPress enter to continue or type \"quit\" to finish: ");
             _input = Console.ReadLine();
-            scripture.HideRandomWords(3)
-            Console.Clear()
+            scripture.HideRandomWords(3);
+            Console.Clear();
+            if (scripture.IsCompleteHidden())
+            {
+                Console.WriteLine(scripture.GetDisplayText());
+                break;
+            }
         }
     }
-}
+}                

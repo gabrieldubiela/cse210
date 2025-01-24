@@ -1,15 +1,43 @@
-public class Scripture (Reference Reference, string text)
+using System;
+using System.Collections.Generic;
 
-    Reference _reference = new Reference();
-    private readonly List<string> _words = new() {}
+public class Scripture
+{
+    private Reference _reference;
+    private readonly List<Word> _words;
 
-    void HideRandomWords(int numberToHide)
-        for (i = 3, i > 0, i--)
-            var _random = new Random();
-            int _index = _random.Next(_words.Count);
-            
-            _words.RemoveAt(_index);
+    public Scripture(Reference reference, string text)
+    {
+        _reference = reference;
+        _words = new List<Word>();
+        foreach (var word in text.Split(' '))
+        {
+            _words.Add(new Word(word));
+        }
+    }
 
-    string GetDisplayText()
+    public void HideRandomWords(int numberToHide)
+    {
+        var _random = new Random();
+        for (int i = 0; i < numberToHide; i++)
+        {
+            var visibleWords = _words.FindAll(word => !word.IsHidden());
+            if (IsCompleteHidden())
+            {
+                break;
+            }
+            int _index = _random.Next(visibleWords.Count);
+            visibleWords[_index].Hide();
+        }
+    }
 
-    bool IsCompleteHidden()
+    public string GetDisplayText()
+    {
+        return _reference.GetDisplayText() + "\n" + string.Join(" ", _words.ConvertAll(word => word.GetDisplayText()));
+    }
+
+    public bool IsCompleteHidden()
+    {
+        return _words.TrueForAll(word => word.IsHidden());
+    }
+}
