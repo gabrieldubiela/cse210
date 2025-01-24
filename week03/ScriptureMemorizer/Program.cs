@@ -1,3 +1,5 @@
+// Have a library of scriptures. Each time will randomly give a scripture to the user.
+
 using System;
 using System.Reflection;
 
