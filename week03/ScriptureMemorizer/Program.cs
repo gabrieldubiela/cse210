@@ -1,4 +1,4 @@
-// Have a library of scriptures. Each time will randomly give a scripture to the user.
+// Have a library of scriptures. Each time will randomly give a scripture to the user. Also randomly select from only those words that are not already hidden.
 
 using System;
 using System.Reflection;
