@@ -1,0 +1,11 @@
+Inheritance is when a class (child) gets methods and attributes from another class (parent). It helps avoid repeating the same code in multiple classes. A key benefit is code reusability—you write common features once in the parent class and reuse them in child classes. For example, in a game, a Vehicle class could have a move() method, and child classes like Car and Bike can inherit it instead of rewriting it.
+
+class Vehicle:
+    def move(self):
+        print("Moving...")
+
+class Car(Vehicle):  # Inherits from Vehicle
+    pass
+
+my_car = Car()
+my_car.move()  # Output: Moving...
