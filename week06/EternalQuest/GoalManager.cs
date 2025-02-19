@@ -29,8 +29,7 @@ public class GoalManager
             Console.WriteLine("    5. Record Event");
             Console.WriteLine("    6. Exit");
             Console.Write("Select a choice from the menu: ");
-            
-            
+            _userOption = int.Parse(Console.ReadLine());
 
         if (_userOption == 1)
             {
