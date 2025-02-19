@@ -1,8 +1,8 @@
-public class Goal
+public abstract class Goal
 {
-    private string _shortName;
-    private string _description;
-    private string _points;
+    protected string _shortName;
+    protected string _description;
+    protected string _points;
 
     public Goal(string name, string description, string points)
     {
@@ -17,7 +17,7 @@ public class Goal
 
     public virtual string GetDetailsString()
     {
-        if (isComplete())
+        if (IsComplete())
         {
             return $"[X] - {_shortName} - {_description} - {_points}";
         }

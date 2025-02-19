@@ -13,8 +13,7 @@ public class ChecklistGoal : Goal
 
     public override void RecordEvent()
     {
-        int points = int.Parse(_goals[_goalOption]._points);
-        _score += points;
+        int points = int.Parse(_points);
         _amountCompleted++;
         int totalPoints = int.Parse(_points);
 
@@ -23,7 +22,6 @@ public class ChecklistGoal : Goal
             totalPoints += _bonus;
         }
         Console.WriteLine($"Congratulations! You have earned {totalPoints} points!");
-        CheckLevelUp();
     }
 
     public override bool IsComplete()
@@ -33,7 +31,7 @@ public class ChecklistGoal : Goal
 
     public override string GetDetailsString()
     {
-        if (isComplete())
+        if (IsComplete())
         {
             return $"[X] - {_shortName} - {_description} - {_points} --- Currently completed {_amountCompleted}/{_target}";
         }
