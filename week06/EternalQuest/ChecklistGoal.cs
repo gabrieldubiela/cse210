@@ -14,7 +14,7 @@ public class ChecklistGoal : Goal
     public override void RecordEvent()
     {
         int points = int.Parse(_points);
-        _amountCompleted++;
+        _amountCompleted = _amountCompleted + 1;
         int totalPoints = int.Parse(_points);
 
         if (_amountCompleted >= _target)

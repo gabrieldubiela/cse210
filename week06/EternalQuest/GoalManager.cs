@@ -118,36 +118,22 @@ public class GoalManager
     {
         ListGoalDetails();
         Console.WriteLine("Which goal did you accomplish?");
-int _goalOption = int.Parse(Console.ReadLine()) - 1;
-// Obtém a string de representação do objetivo
-string details = _goals[_goalOption].GetStringRepresentation();
-
-// Divide a string pelos delimitadores conhecidos
-string[] partes = details.Split(',', ':'); 
-
-// Procura a primeira parte que seja um número
-int points = 0;
-foreach (string parte in partes)
-{
-    if (int.TryParse(parte.Trim(), out points))
-    {
-        break; // Encontramos o número, podemos parar
+        int _goalOption = int.Parse(Console.ReadLine()) - 1;
+        string details = _goals[_goalOption].GetStringRepresentation();
+        string[] parts = details.Split(',', ':'); 
+        int points = 0;
+        foreach (string part in parts)
+        {
+            if (int.TryParse(part.Trim(), out points))
+            {
+                break;
+            }
+        }
+        _score += points;
+        CheckLevelUp();
     }
-}
-
-// Adiciona os pontos ao score
-_score += points;
-
-
-
-
-
-
-CheckLevelUp();
-
-    }
-
-     public void SaveGoals()
+    
+    public void SaveGoals()
     {
         Console.WriteLine("What is the filename for the goal file? ");
         string filename = Console.ReadLine();
