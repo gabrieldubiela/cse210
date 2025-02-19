@@ -6,17 +6,20 @@ public class SimpleGoal : Goal
 
     public override void RecordEvent()
     {
-        // Record the event
+        int points = int.Parse(_goals[_goalOption]._points);
+        Console.WriteLine($"Congratulations! You have earned {points} points.");    
+        _score += points;
+        CheckLevelUp();
     }
 
     public override bool IsComplete()
     {
-        // Check if the goal is complete
+
         return false;
     }
 
     public override string GetStringRepresentation()
     {
-        return $"{_shortName} - {_description} - {_points}";
+        return $"{_shortName}, {_description}, {_points}";
     }
 }

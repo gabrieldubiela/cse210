@@ -17,7 +17,14 @@ public class Goal
 
     public virtual string GetDetailsString()
     {
-        return $"{_shortName} - {_description}";
+        if (isComplete())
+        {
+            return $"[X] - {_shortName} - {_description} - {_points}";
+        }
+        else
+        {
+            return $"[ ] - {_shortName} - {_description} - {_points}";
+        }
     }
 
     public abstract string GetStringRepresentation();

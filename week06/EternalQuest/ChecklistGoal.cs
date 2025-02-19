@@ -12,17 +12,19 @@ public class ChecklistGoal : Goal
     }
 
     public override void RecordEvent()
-{
-    _amountCompleted++;
-    int totalPoints = int.Parse(_points);
-
-    if (_amountCompleted >= _target)
     {
-        totalPoints += _bonus;
-    }
+        int points = int.Parse(_goals[_goalOption]._points);
+        _score += points;
+        _amountCompleted++;
+        int totalPoints = int.Parse(_points);
+
+        if (_amountCompleted >= _target)
+        {
+            totalPoints += _bonus;
+        }
         Console.WriteLine($"Congratulations! You have earned {totalPoints} points!");
         CheckLevelUp();
-}
+    }
 
     public override bool IsComplete()
     {
@@ -31,11 +33,18 @@ public class ChecklistGoal : Goal
 
     public override string GetDetailsString()
     {
-        return $"{_shortName} - {_description} - Completed {_amountCompleted}/{_target} times";
+        if (isComplete())
+        {
+            return $"[X] - {_shortName} - {_description} - {_points} --- Currently completed {_amountCompleted}/{_target}";
+        }
+        else
+        {
+            return $"[ ] - {_shortName} - {_description} - {_points} --- Currently completed {_amountCompleted}/{_target}";
+        }
     }
 
     public override string GetStringRepresentation()
     {
-        return $"ChecklistGoal:{_shortName},{_description},{_points},{_bonus},{_target},{_amountCompleted}";
+        return $"{_shortName},{_description},{_points},{_bonus},{_target},{_amountCompleted}";
     }
 }

@@ -114,16 +114,13 @@ public class GoalManager
         _goals.Add(goal);
     }
 
-    public virtual void RecordEvent()
+    public void RecordEvent()
     {
         ListGoalDetails();
         Console.WriteLine("Which goal did you accomplish? ")
         int _goalOption = int.Parse(Console.ReadLine());
         _goals[_goalOption].RecordEvent();
-        int points = int.Parse(_goals[_goalOption]._points);
-        Console.WriteLine($"Congratulations! You have earned {points} points.");    
-        _score += points;
-        CheckLevelUp();
+        
     }
 
      public void SaveGoals()
