@@ -3,9 +3,14 @@ public class GoalManager
     private List<Goal> _goals = new List<Goal>();
     private int _score;
 
+    private int _level;
+    private int _pointsForNextLevel;
+
     public GoalManager()
     {
         _score = 0;
+        _level = 1;
+        _pointsForNextLevel = 1000;
     }
 
     public void Start()
@@ -14,7 +19,18 @@ public class GoalManager
         
         while (_userOption != 6)
         {
-            if (_userOption == 1)
+            DisplayPlayerInfo();
+            Console.WriteLine("");
+            Console.WriteLine("Menu Options:");
+            Console.WriteLine("    1. Create New Goal");
+            Console.WriteLine("    2. List goals");
+            Console.WriteLine("    3. Save Goals");
+            Console.WriteLine("    4. Load Goals");
+            Console.WriteLine("    5. Record Event");
+            Console.WriteLine("    6. Exit");
+            _userOption = int.Parse(Console.ReadLine());
+
+        if (_userOption == 1)
             {
                 Console.WriteLine("");
                 Console.WriteLine("The types of Goals are:");
@@ -28,7 +44,7 @@ public class GoalManager
                 Console.WriteLine("What is a short description of it? ");
                 string description = Console.ReadLine();
                 Console.WriteLine("What is the amount of points associated with this goal? ");
-                int points = int.Parse(Console.ReadLine());
+                string points = Console.ReadLine();
                 if (goalOption == 1)
                 {
                     _goals.Add.(new SimpleGoal(name, description, points));
@@ -66,17 +82,6 @@ public class GoalManager
             {
                 RecordEvent();
             }
-
-            DisplayPlayerInfo();
-            Console.WriteLine("");
-            Console.WriteLine("Menu Options:");
-            Console.WriteLine("    1. Create New Goal");
-            Console.WriteLine("    2. List goals");
-            Console.WriteLine("    3. Save Goals");
-            Console.WriteLine("    4. Load Goals");
-            Console.WriteLine("    5. Record Event");
-            Console.WriteLine("    6. Exit");
-            _userOption = int.Parse(Console.ReadLine());
        }
     }
 
@@ -103,21 +108,22 @@ public class GoalManager
         }
     }
 
-    public void CreateGoal(string name, string description, int points)
+    public void CreateGoal(string name, string description, string points)
     {
         Goal goal = new Goal(name, description, points);
         _goals.Add(goal);
     }
 
-    public void RecordEvent(string name)
+    public virtual void RecordEvent()
     {
         ListGoalDetails();
         Console.WriteLine("Which goal did you accomplish? ")
         int _goalOption = int.Parse(Console.ReadLine());
         _goals[_goalOption].RecordEvent();
-        points = int.Parse(_goals[goalOption]._points);
+        int points = int.Parse(_goals[_goalOption]._points);
         Console.WriteLine($"Congratulations! You have earned {points} points.");    
         _score += points;
+        CheckLevelUp();
     }
 
      public void SaveGoals()
@@ -171,6 +177,16 @@ public class GoalManager
         else
         {
             Console.WriteLine("File not found.");
+        }
+    }
+
+    private void CheckLevelUp()
+    {
+        while (_score >= _pointsForNextLevel)
+        {
+            _level++;
+            _pointsForNextLevel += 500;
+            Console.WriteLine($"Congratulations! You leveled up to Level {_level}!");
         }
     }
 }

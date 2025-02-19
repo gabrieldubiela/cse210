@@ -6,21 +6,23 @@ public class ChecklistGoal : Goal
 
     public ChecklistGoal(string name, string description, string points, int target, int bonus) : base(name, description, points)
     {
-        _checklist = checklist;
+        _target = target;
+        _bonus = bonus;
+        _amountCompleted = 0;
     }
 
     public override void RecordEvent()
+{
+    _amountCompleted++;
+    int totalPoints = int.Parse(_points);
+
+    if (_amountCompleted >= _target)
     {
-        _amountCompleted++;
-        if (_amountCompleted >= _target)
-        {
-            Console.WriteLine($"Congratulations! You have earned {_points} points and a bonus of {_bonus} points!");
-        }
-        else
-        {
-            Console.WriteLine($"Congratulations! You have earned {_points} points!");
-        }
+        totalPoints += _bonus;
     }
+        Console.WriteLine($"Congratulations! You have earned {totalPoints} points!");
+        CheckLevelUp();
+}
 
     public override bool IsComplete()
     {
