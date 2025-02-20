@@ -1,23 +1,23 @@
 public class Running : Activity
 {
-    private int _speed;
     private int _distance;
-    private int _time;
+    private int _speed;
+    private int _pace;
 
-    public Running(string name, string description, int points, int speed, int distance, int time) : base(name, description, points)
+    public Running(string activity, DateTime date, int min, int distance) : base(activity, date, min, distance)
     {
-        _speed = speed;
         _distance = distance;
-        _time = time;
     }
 
-    public override void RecordEvent()
+
+    public override void Calculate()
     {
-        Console.WriteLine($"Congratulations! You have earned {_points} points.");
+        _pace = _time / _distance;
+        _speed = _distance / _time * 60;
     }
 
-    public override string GetStringRepresentation()
+    public override string DisplayInfo()
     {
-        return $"{_name}, {_description}, {_points}, {_speed}, {_distance}, {_time}";
+        return $"Distance {_distance} km, Speed {_speed} kpm, Pace: {_pace} min per km";
     }
 }

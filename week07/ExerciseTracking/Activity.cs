@@ -1,25 +1,23 @@
 public abstract class Activity
 {
-    private int _distance;
-    private int _speed;
-    private int _pace;
-    private date _date;
-    private string _activity;
+    protected DateTime _date;
+    protected string _activity;
+    protected int _time;
 
-    public Activity(string name, string description, int points, int distance, int speed, int pace)
+    public Activity(string activity, DateTime date, int min, int distance)
     {
-        _name = name;
-        _description = description;
-        _points = points;
-        _distance = distance;
-        _speed = speed;
-        _pace = pace;
+        _activity = activity;
+        _date = date;
+        _time = min;
     }
 
-    public void GetSummary()
+    public virtual void GetSummary()
     {
-        Console.WriteLine($"{_date} {_activity} ({_time} min)- Distance {_distance} km, Speed {_speed} kpm, Pace: {_pace} min per km");
+        Console.WriteLine($"{_date} {_activity} ({_time} min)- {DisplayInfo()}");
     }
 
     public abstract void Calculate();
+
+    public abstract string DisplayInfo();
+
 }
