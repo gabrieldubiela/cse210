@@ -13,16 +13,16 @@ public class ChecklistGoal : Goal
 
     public override void RecordEvent()
     {
-        int points = int.Parse(_points);
+        int basePoints = int.Parse(_points);
         _amountCompleted++;
 
-        int totalPoints = points;
+        int points = basePoints;
         if (_amountCompleted >= _target)
         {
-            totalPoints += _bonus;
+            points += _bonus;
         }
 
-        Console.WriteLine($"Congratulations! You have earned {totalPoints} points!");
+        Console.WriteLine($"Congratulations! You have earned {points} points!");
     }
 
     public override bool IsComplete()

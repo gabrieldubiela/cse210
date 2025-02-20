@@ -119,16 +119,14 @@ public class GoalManager
         ListGoalDetails();
         Console.WriteLine("Which goal did you accomplish?");
         int _goalOption = int.Parse(Console.ReadLine()) - 1;
-        _goals[_goalOption].RecordEvent();
-        string details = _goals[_goalOption].GetStringRepresentation();
-        string[] parts = details.Split(',');
-        int points = 0;
-        foreach (string part in parts)
+        Goal goal = _goals[_goalOption];
+        goal.RecordEvent();
+
+        string[] goalDetails = goal.GetStringRepresentation().Split(',');
+        int points = int.Parse(goalDetails[2]);
+        if (goal is ChecklistGoal checklistGoal)
         {
-            if (int.TryParse(part.Trim(), out points))
-            {
-                break;
-            }
+            points += int.Parse(goalDetails[3]);
         }
         _score += points;
         CheckLevelUp();
