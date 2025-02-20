@@ -119,8 +119,9 @@ public class GoalManager
         ListGoalDetails();
         Console.WriteLine("Which goal did you accomplish?");
         int _goalOption = int.Parse(Console.ReadLine()) - 1;
+        _goals[_goalOption].RecordEvent();
         string details = _goals[_goalOption].GetStringRepresentation();
-        string[] parts = details.Split(',', ':'); 
+        string[] parts = details.Split(',');
         int points = 0;
         foreach (string part in parts)
         {
